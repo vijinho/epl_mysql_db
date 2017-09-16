@@ -1,0 +1,6 @@
+SELECT HomeTeam, COUNT(*) AS draws
+FROM EPL
+WHERE FTHG < FTAG
+GROUP BY HomeTeam
+ORDER BY draws DESC
+;

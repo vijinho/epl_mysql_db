@@ -1,0 +1,6 @@
+SELECT AwayTeam, COUNT(*) AS defeats
+FROM EPL
+WHERE FTHG > FTAG
+GROUP BY AwayTeam
+ORDER BY defeats DESC
+;
