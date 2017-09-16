@@ -1,0 +1,6 @@
+SELECT AwayTeam, COUNT(*) AS draws
+FROM EPL
+WHERE FTHG = FTAG
+GROUP BY AwayTeam
+ORDER BY draws DESC
+;
