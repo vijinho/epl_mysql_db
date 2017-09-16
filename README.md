@@ -36,6 +36,8 @@ Import the MySQL dump file `EPL_Seasons_1993-2016_RAW_Tables.mysql` for the comb
 
 Refer to `sql/queries/` and feel free to send any other queries with a github pull request.
 
+## Simple Example
+
 e.g. Top-ten teams with most home wins in EPL history, in descending order:
 
 ```
@@ -58,4 +60,24 @@ West Ham	176
 Aston Villa	158
 ```
 
+## Complicated Example
+
+### Complete record between two teams matches
+
+Show all results between West Ham (Home) versus Tottenham (Away), Full-Time Result & Half-Time scores, by latest season descending.
+
+```
+SELECT SEASON, `Date`,
+	LEFT(MatchDate,11) AS `Date`,
+	HomeTeam,
+	AwayTeam,
+	CONCAT(FTHG, '-', FTAG) AS Result,
+	CONCAT(HTHG, '-', HTAG) AS HalfTime
+FROM EPL
+WHERE HomeTeam = 'West Ham'
+AND AwayTeam = 'Tottenham'
+ORDER BY `DATE` DESC;
+
+```
+*Note:* The MatchDate and SEASON fields are incorrect on one of the results because we are working with RAW data from the import and the database isn't fully tidied-up and normalised yet.  To be 100% certain of no inconsistencies, make sure you view the original imported columns in your output results!
 --
