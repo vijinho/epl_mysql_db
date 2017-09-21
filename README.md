@@ -1,6 +1,6 @@
 # English Premier League Results Database (MySQL)
 
-## Introduction
+## Introduction
 
 This is a raw set of imported data from http://www.football-data.co.uk with each Premier League CSV results data file at http://www.football-data.co.uk/englandm.php raw SQL imported using PhpMyAdmin into a separate table, numbered EPL1993-EPL2017 (will need to be updated regularly until the season is over).
 
@@ -36,7 +36,7 @@ Import the MySQL dump file `EPL_Seasons_1993-2016_RAW_Tables.mysql` for the comb
 
 Refer to `sql/queries/` and feel free to send any other queries with a github pull request.
 
-## Simple Example
+## Simple Example
 
 e.g. Top-ten teams with most home wins in EPL history, in descending order:
 
@@ -60,9 +60,9 @@ West Ham	176
 Aston Villa	158
 ```
 
-## Complicated Example
+## Complicated Example
 
-### Complete record between two teams matches
+### Complete record between two teams matches
 
 Show all results between West Ham (Home) versus Tottenham (Away), Full-Time Result & Half-Time scores, by latest season descending.
 
