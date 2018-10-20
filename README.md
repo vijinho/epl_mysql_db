@@ -1,4 +1,4 @@
-# English Premier League Results Database (MySQL)
+# English Premier League Results Database (MySQL/sqlite)
 
 > I heartily welcome patches to update this data or any football-related donations if you appreciate it, e.g. a postcard from your club shop for example -- vijay@yoyo.org
 
@@ -18,12 +18,12 @@ I was not satisfied with my inability to analyse results further than on existin
 
 ### Single database table of EPL results
 
-Import the MySQL dump file `EPL_Seasons_1993-2017_RAW_Table.mysql` for the
+Import the MySQL dump file `EPL_Seasons_1993-2017_RAW_Table.sql` for the
 combined table of all historical EPL results up to the start of 2018-2019
 season.  This table has all the columns of all of the CSV files and the RAW data and as well as an extra couple of columns 'SEASON' for the SEASON/YEAR (i.e. 1994-1995) and also the Date column has been converted to a MySQL compatible DATE format with.  (See the SQL for this at the end of `goals.php`)
 
 ### Multiple tables for each EPL season's results
-Import the MySQL dump file `EPL_Seasons_1993-2017_RAW_Tables.mysql` for the
+Import the MySQL dump file `EPL_Seasons_1993-2017_RAW_Tables.sql` for the
 individual tables of all historical EPL results up to start of season 2018.  This table has all the columns of all of the CSV files and the RAW data and as well as an extra couple of columns 'SEASON' for the SEASON/YEAR (i.e. 1994-1995) and also the Date column has been converted to a MySQL compatible DATE format with.  (See the SQL for this at the end of `goals.php`)
 
 ## Updating (for 2018-19 & future seasons)
@@ -34,8 +34,20 @@ individual tables of all historical EPL results up to start of season 2018.  Thi
 4. On the command-line, run `php goals.php` to generate the SQL to rename the columns in the new DB table
 5. Refer to the SQL at the end of `goals.php` on how to update this newly created table
 6. Delete current 2016-2017 season results from the database table `EPL` with `DELETE FROM EPL WHERE matchdate > '2018-08-01';`
-7. Insert the latest results from the newly created table to the master combined table `EPL` of all historical results
 
+## Updating the sqlite database/converting between databases
+
+Go to [rebasedata.com/convert-mysql-to-sqlite-online](https://www.rebasedata.com/convert-mysql-to-sqlite-online) for instructions on how to easily convert the data between various DBMSs.  This is how it was done originally:
+
+```
+curl -F files[]=@EPL_Seasons_1993-2017_RAW_Tables.sql 'https://www.rebasedata.com/api/v1/convert?outputFormat=sqlite&errorResponse=zip' -o EPL_Seasons_1993-2017_RAW_Tables.sqlite.zip
+
+unzip EPL_Seasons_1993-2017_RAW_Tables.sqlite.zip
+
+mv data.sqlite EPL_Seasons_1993-2017_RAW_Tables.sqlite
+```
+
+7. Insert the latest results from the newly created table to the master combined table `EPL` of all historical results
 
 ## Example Queries
 
