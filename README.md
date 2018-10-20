@@ -16,6 +16,10 @@ I was not satisfied with my inability to analyse results further than on existin
 
 ## Instructions
 
+### Just browsing the data with SQL
+
+Download an sqlite tool like [sqlitebrowser.org](http://sqlitebrowser.org/) application or [phpliteadmin.org](phpliteadmin.org/) and open the *.sqlite* file in the *sql* data folder.
+
 ### Single database table of EPL results
 
 Import the MySQL dump file `EPL_Seasons_1993-2017_RAW_Table.sql` for the
@@ -55,7 +59,7 @@ Refer to `sql/queries/` and feel free to send any other queries with a github pu
 
 ## Simple Example
 
-e.g. Top-ten teams with most home wins in EPL history, in descending order:
+e.g. Top-ten teams with most home wins in EPL history, in descending order (up to end of 2017-2018 season) (works on mysql and sqlite):
 
 ```
 SELECT HomeTeam, COUNT(*) AS wins
@@ -65,23 +69,23 @@ GROUP BY HomeTeam
 ORDER BY COUNT(*) DESC
 LIMIT 10;
 
-Man United	312
-Arsenal	274
-Chelsea	268
-Liverpool	258
-Tottenham	222
-Newcastle	200
-Everton	198
-Man City	184
-West Ham	176
-Aston Villa	158
+"Man United"	"349"
+"Arsenal"	"315"
+"Chelsea"	"304"
+"Liverpool"	"290"
+"Tottenham"	"253"
+"Everton"	"227"
+"Newcastle"	"225"
+"Man City"	"212"
+"West Ham"	"182"
+"Aston Villa"	"175"
 ```
 
 ## Complicated Example
 
 ### Complete record between two teams matches
 
-Show all results between West Ham (Home) versus Tottenham (Away), Full-Time Result & Half-Time scores, by latest season descending.
+Show all results between West Ham (Home) versus Tottenham (Away), Full-Time Result & Half-Time scores, by latest season descending (mysql-specific example).
 
 ```
 SELECT SEASON, `Date`,
